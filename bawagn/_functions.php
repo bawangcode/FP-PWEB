@@ -1,6 +1,6 @@
 <?php
 //koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "fppweb");
+$conn = mysqli_connect("localhost", "root", "123$%^yuiKL", "fppweb");
 
 //fungsi query data
 function query($query){
@@ -86,7 +86,7 @@ function uploadtugas($data){
   if( !$namatugas ){
     return false;
   }
-  $query = "INSERT INTO tugas VALUES('', '$userID', '$mapelID', '$judultugas', '$namatugas')";
+  $query = "INSERT INTO tugas VALUES(NULL, '$userID', '$mapelID', '$judultugas', '$namatugas')";
   mysqli_query($conn, $query);
 
   return mysqli_affected_rows($conn);
@@ -101,7 +101,7 @@ function createusers($data){
   $password = htmlspecialchars($data["password"]);
   $password = password_hash($password, PASSWORD_DEFAULT);
   //query create
-  $query = "INSERT INTO users VALUES('','$fullname', '$email', '$username', '$password')";
+  $query = "INSERT INTO users VALUES(NULL,'$fullname', '$email', '$username', '$password')";
   mysqli_query($conn, $query);
 
   return mysqli_affected_rows($conn);
@@ -111,19 +111,7 @@ function createmapel($data){
   global $conn;
   $mapel = htmlspecialchars($data["mapel"]);
   //query create
-  $query = "INSERT INTO matapelajaran VALUES('', '$mapel')";
-  mysqli_query($conn, $query);
-
-  return mysqli_affected_rows($conn);
-}
-
-function createtugas($data){
-  global $conn;
-  $userID = htmlspecialchars($data["userID"]);
-  $mapelID = htmlspecialchars($data["mapelID"]);
-  $namatugas = htmlspecialchars($data["namatugas"]);
-  //query create
-  $query = "INSERT INTO tugas VALUES('', $userID, $mapelID, '$namatugas')";
+  $query = "INSERT INTO matapelajaran VALUES(NULL, '$mapel')";
   mysqli_query($conn, $query);
 
   return mysqli_affected_rows($conn);
@@ -192,7 +180,7 @@ function registrasi($data){
   //enkripsi password
   $password = password_hash($password, PASSWORD_DEFAULT);
   //masuk ke database
-  mysqli_query($conn, "INSERT INTO users VALUES('', '$fullname', '$email', '$username', '$password')");
+  mysqli_query($conn, "INSERT INTO users VALUES(NULL, '$fullname', '$email', '$username', '$password')");
   return mysqli_affected_rows($conn);
 }
 
@@ -250,7 +238,7 @@ function registrasitendik($data){
   //enkripsi password
   $password = password_hash($password, PASSWORD_DEFAULT);
   //masuk ke database
-  mysqli_query($conn, "INSERT INTO tendik VALUES('', '$fullname', '$email', '$institusi', '$username', '$password')");
+  mysqli_query($conn, "INSERT INTO tendik VALUES(NULL, '$fullname', '$email', '$institusi', '$username', '$password')");
   return mysqli_affected_rows($conn);
 }
  ?>
